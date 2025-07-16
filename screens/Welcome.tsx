@@ -1,7 +1,14 @@
-import { View } from "react-native";
+import Layout from "@/components/ui/Layout";
+import { Text, View } from "react-native";
 
 const Welcome = () => {
-  return <View>Welcome</View>;
+  return (
+    <Layout>
+      <View>
+        <Text>hello welcome</Text>
+      </View>
+    </Layout>
+  );
 };
 
 export default Welcome;
