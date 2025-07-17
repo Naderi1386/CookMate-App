@@ -1,15 +1,10 @@
 import Layout from "@/components/ui/Layout";
-import { getRecipes } from "@/services/getRecipes";
-import { useEffect } from "react";
+import { useGetRecipes } from "@/hooks/useGetRecipes";
+
 import { Text } from "react-native";
 
 const Home = () => {
-  useEffect(() => {
-    const request = async () => {
-      await getRecipes("10");
-    };
-    request();
-  }, []);
+  const { data } = useGetRecipes();
   return (
     <Layout>
       <Text>sss</Text>
