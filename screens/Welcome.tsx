@@ -53,6 +53,7 @@ const Styles = StyleSheet.create({
     width: 90,
     height: 90,
     resizeMode: "contain",
+    borderRadius:10000
   },
   title: {
     fontWeight: "600",

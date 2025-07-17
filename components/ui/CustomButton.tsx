@@ -26,6 +26,8 @@ const Styles = StyleSheet.create({
     borderRadius: 8,
     paddingBottom: 14,
     paddingHorizontal: 16,
+    borderWidth: 2,
+    borderColor: Colors.sub,
   },
   text: {
     color: Colors.white,

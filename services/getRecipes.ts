@@ -10,7 +10,7 @@ export const getRecipes = async (number: string) => {
         number: number,
       },
     });
-    return response.data.results as RecipesType;
+    return response.data.results as RecipesType[];
   } catch (error) {
     console.error(error);
     throw new Error("Recipes could not be loaded !");
