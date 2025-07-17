@@ -23,14 +23,13 @@ export default CustomButton;
 const Styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.main,
-    borderRadius:8,
-    paddingBottom:14,
-    paddingHorizontal:16
+    borderRadius: 8,
+    paddingBottom: 14,
+    paddingHorizontal: 16,
   },
   text: {
     color: Colors.white,
-    fontSize:FontSize.lg,
-    fontWeight:"600"
-    
+    fontSize: FontSize.lg,
+    fontWeight: "600",
   },
 });

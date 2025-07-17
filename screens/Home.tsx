@@ -1,7 +1,20 @@
-import { View } from "react-native"
+import Layout from "@/components/ui/Layout";
+import { getRecipes } from "@/services/getRecipes";
+import { useEffect } from "react";
+import { Text } from "react-native";
 
 const Home = () => {
-  return <View>Home</View>;
-}
+  useEffect(() => {
+    const request = async () => {
+      await getRecipes("10");
+    };
+    request();
+  }, []);
+  return (
+    <Layout>
+      <Text>sss</Text>
+    </Layout>
+  );
+};
 
-export default Home
+export default Home;

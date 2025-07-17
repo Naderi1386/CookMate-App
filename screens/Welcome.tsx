@@ -1,9 +1,10 @@
 import CustomButton from "@/components/ui/CustomButton";
 import Layout from "@/components/ui/Layout";
 import { FontSize } from "@/constants/FontSize";
+import { ScreenPropsType } from "@/types/Screens";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const Welcome = () => {
+const Welcome = ({ navigation }: ScreenPropsType<"Welcome">) => {
   return (
     <Layout>
       <View style={Styles.container}>
@@ -13,7 +14,7 @@ const Welcome = () => {
             uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSCezZAKy4aJLPVlLu1KoyAcbnU_KNUjxIew&s",
           }}
         />
-        <Text style={Styles.title}>🍽️ Welcome to AshpazBashi!</Text>
+        <Text style={Styles.title}>🍽️ Welcome to Cook Mate!</Text>
         <Text style={Styles.text}>
           🥘 Thousands of delicious recipes from around the world — ready to
           turn you into a home chef! 👨‍🍳 With just a few taps, start cooking your
@@ -28,7 +29,9 @@ const Welcome = () => {
           the world of flavors!
         </Text>
         <View>
-          <CustomButton>start</CustomButton>
+          <CustomButton onPress={() => navigation.navigate("Home")}>
+            start
+          </CustomButton>
         </View>
       </View>
     </Layout>
