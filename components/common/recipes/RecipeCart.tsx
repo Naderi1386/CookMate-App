@@ -1,11 +1,13 @@
 import CustomButton from "@/components/ui/CustomButton";
 import { Colors } from "@/constants/Colors";
 import { FontSize } from "@/constants/FontSize";
+import { useStore } from "@/store/store";
 import { RecipesType } from "@/types/Recipes";
-import { Card } from "@rneui/themed";
+import { Card, Icon } from "@rneui/themed";
 import { StyleSheet } from "react-native";
 
 const RecipeCart = ({ recipe }: { recipe: RecipesType }) => {
+  const { addRecipe } = useStore();
   const { image, title } = recipe;
   return (
     <Card containerStyle={Styles.container}>
@@ -19,6 +21,13 @@ const RecipeCart = ({ recipe }: { recipe: RecipesType }) => {
       />
 
       <CustomButton>View More</CustomButton>
+      <Icon
+        onPress={() => addRecipe(recipe)}
+        style={Styles.icon}
+        name="heart-o"
+        type="font-awesome"
+        color={Colors.main}
+      />
     </Card>
   );
 };
@@ -38,9 +47,12 @@ const Styles = StyleSheet.create({
   img: {
     padding: 0,
     marginBottom: 12,
-    resizeMode:"cover"
+    resizeMode: "cover",
   },
   divider: {
     backgroundColor: Colors.sub,
+  },
+  icon: {
+    marginTop: 8,
   },
 });

@@ -24,11 +24,13 @@ const Welcome = ({ navigation }: ScreenPropsType<"Welcome">) => {
           🍳 Ready to cook your first recipe? 👉 Tap “Get Started” and dive into
           the world of flavors!
         </Text>
-        <View>
+        <View style={Styles.buttonsContainer}>
           <CustomButton onPress={() => navigation.navigate("Home")}>
             start
           </CustomButton>
-          
+          <CustomButton onPress={() => navigation.navigate("Favorites")}>
+            favorites ♥️
+          </CustomButton>
         </View>
       </View>
     </Layout>
@@ -56,5 +58,11 @@ const Styles = StyleSheet.create({
     fontSize: FontSize.md,
     marginBottom: 10,
     textAlign: "center",
+  },
+  buttonsContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap:12,
+    flexDirection: "row",
   },
 });
