@@ -1,19 +1,15 @@
 import CustomButton from "@/components/ui/CustomButton";
 import Layout from "@/components/ui/Layout";
+import Logo from "@/components/ui/Logo";
 import { FontSize } from "@/constants/FontSize";
 import { ScreenPropsType } from "@/types/Screens";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 const Welcome = ({ navigation }: ScreenPropsType<"Welcome">) => {
   return (
     <Layout>
       <View style={Styles.container}>
-        <Image
-          style={Styles.logo}
-          source={{
-            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSCezZAKy4aJLPVlLu1KoyAcbnU_KNUjxIew&s",
-          }}
-        />
+        <Logo width={90} height={90} />
         <Text style={Styles.title}>🍽️ Welcome to Cook Mate!</Text>
         <Text style={Styles.text}>
           🥘 Thousands of delicious recipes from around the world — ready to
@@ -49,19 +45,13 @@ const Styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 10,
   },
-  logo: {
-    width: 90,
-    height: 90,
-    resizeMode: "contain",
-    borderRadius:10000
-  },
   title: {
-    fontWeight: "600",
+    fontWeight: "700",
     fontSize: FontSize["2xl"],
     marginBottom: 16,
   },
   text: {
-    fontWeight: "500",
+    fontWeight: "600",
     fontSize: FontSize.md,
     marginBottom: 10,
     textAlign: "center",

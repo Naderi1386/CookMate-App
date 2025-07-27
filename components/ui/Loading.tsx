@@ -1,10 +1,15 @@
-import { Colors } from "@/constants/Colors";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
-const Loading = () => {
+const Loading = ({
+  color,
+  size,
+}: {
+  color: string;
+  size: number | "large" | "small" | undefined;
+}) => {
   return (
     <View style={Styles.container}>
-      <ActivityIndicator size="large" color={Colors.main} />
+      <ActivityIndicator size={size} color={color} />
     </View>
   );
 };
