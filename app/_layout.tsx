@@ -4,6 +4,7 @@ import Welcome from "@/screens/Welcome";
 import Home from "@/screens/Home";
 import FoodDetails from "@/screens/FoodDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Favorites from "@/screens/Favorites";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -24,6 +25,7 @@ export default function RootLayout() {
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="FoodDetails" component={FoodDetails} />
+        <Stack.Screen name="Favorites" component={Favorites} />
       </Stack.Navigator>
     </QueryClientProvider>
   );

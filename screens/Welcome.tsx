@@ -28,6 +28,7 @@ const Welcome = ({ navigation }: ScreenPropsType<"Welcome">) => {
           <CustomButton onPress={() => navigation.navigate("Home")}>
             start
           </CustomButton>
+          
         </View>
       </View>
     </Layout>
