@@ -17,7 +17,7 @@ const Home = () => {
         <Text style={Styles.title}>
           🍽️ Discover Tasty Recipes Made Just for You!
         </Text>
-        <RecipesList offset={offset} key={offset} />
+        <RecipesList query={search} offset={offset} key={`${offset}&${search}`} />
         <Pagination
           onLeftPress={() => {
             if (offset !== "0") setOffset((val) => String(Number(val) - 10));

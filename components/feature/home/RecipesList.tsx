@@ -4,8 +4,11 @@ import Loading from "@/components/ui/Loading";
 import { Colors } from "@/constants/Colors";
 import { useGetRecipes } from "@/hooks/useGetRecipes";
 import { FlatList } from "react-native";
-const RecipesList = ({ offset }: { offset: string }) => {
-  const { recipes, isGettingRecipes } = useGetRecipes(offset);
+const RecipesList = ({ offset, query }: { offset: string; query?: string }) => {
+  const { recipes, isGettingRecipes } = useGetRecipes({
+    offset,
+    query,
+  });
   if (isGettingRecipes) return <Loading size={"large"} color={Colors.main} />;
   return (
     <FlatList
