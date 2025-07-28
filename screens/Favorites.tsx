@@ -1,4 +1,5 @@
 import FavoritesList from "@/components/feature/favorites/FavoritesList";
+import TotalFavorites from "@/components/feature/favorites/TotalFavorites";
 import Layout from "@/components/ui/Layout";
 import { FontSize } from "@/constants/FontSize";
 import { StyleSheet, Text, View } from "react-native";
@@ -9,6 +10,7 @@ const Favorites = () => {
       <View style={Styles.container}>
         <Text style={Styles.title}>My Favorites ♥️</Text>
         <FavoritesList />
+        <TotalFavorites />
       </View>
     </Layout>
   );
