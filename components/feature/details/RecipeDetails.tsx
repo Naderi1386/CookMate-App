@@ -2,6 +2,7 @@ import { FontSize } from "@/constants/FontSize";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
+import Separator from "@/components/common/recipes/Separator";
 const RecipeDetails = () => {
   return (
     <View>
@@ -53,6 +54,7 @@ const RecipeDetails = () => {
               {index + 1} : {item.name}( {item.original} )
             </Text>
           )}
+          ItemSeparatorComponent={Separator}
         />
       </View>
     </View>
