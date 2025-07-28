@@ -62,7 +62,7 @@ const Styles = StyleSheet.create({
   buttonsContainer: {
     display: "flex",
     alignItems: "center",
-    gap:12,
+    gap: 12,
     flexDirection: "row",
   },
 });
