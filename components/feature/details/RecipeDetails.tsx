@@ -1,30 +1,59 @@
 import { FontSize } from "@/constants/FontSize";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 const RecipeDetails = () => {
   return (
     <View>
       <View>
-        <Image
-          style={Styles.img}
-          source={{
-            uri: "https://img.spoonacular.com/recipes/716429-556x370.jpg",
-          }}
-        />
+        <View>
+          <Image
+            style={Styles.img}
+            source={{
+              uri: "https://img.spoonacular.com/recipes/716429-556x370.jpg",
+            }}
+          />
+        </View>
+        <Text style={Styles.title}>
+          Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs
+        </Text>
+        <View style={Styles.smallDetailsWrraper}>
+          <View style={Styles.smallDetails}>
+            <Ionicons name="time-outline" size={38} color={Colors.main} />
+            <Text>Ready In 45 mins</Text>
+          </View>
+          <View style={Styles.smallDetails}>
+            <Ionicons name="barbell-outline" size={38} color={Colors.main} />
+            <Text>Difficulty : Easy</Text>
+          </View>
+        </View>
       </View>
-      <Text style={Styles.title}>
-        Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs
-      </Text>
-      <View style={Styles.smallDetailsWrraper}>
-        <View style={Styles.smallDetails}>
-          <Ionicons name="time-outline" size={38} color={Colors.main} />
-          <Text>Ready In 45 mins</Text>
-        </View>
-        <View style={Styles.smallDetails}>
-          <Ionicons name="barbell-outline" size={38} color={Colors.main} />
-          <Text>Difficulty : Easy</Text>
-        </View>
+      <View style={Styles.listContainer}>
+        <FlatList
+          data={[
+            {
+              name: "cheese",
+              original: "2 tbsp grated cheese (I used romano)",
+            },
+            {
+              name: "cheese",
+              original: "2 tbsp grated cheese (I used romano)",
+            },
+            {
+              name: "cheese",
+              original: "2 tbsp grated cheese (I used romano)",
+            },
+            {
+              name: "cheese",
+              original: "2 tbsp grated cheese (I used romano)",
+            },
+          ]}
+          renderItem={({ item, index }) => (
+            <Text style={Styles.listItem}>
+              {index + 1} : {item.name}( {item.original} )
+            </Text>
+          )}
+        />
       </View>
     </View>
   );
@@ -51,12 +80,20 @@ const Styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     marginTop: 24,
-    gap:42
+    gap: 42,
   },
   smallDetails: {
     display: "flex",
     flexDirection: "column",
     gap: 6,
     alignItems: "center",
+  },
+  listContainer: {
+    marginVertical: 20,
+  },
+  listItem: {
+    fontSize: FontSize.md,
+    fontWeight: "600",
+    marginVertical: 6,
   },
 });
