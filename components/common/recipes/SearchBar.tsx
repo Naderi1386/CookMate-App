@@ -33,14 +33,17 @@ const Styles = StyleSheet.create({
   searchContainer: {
     backgroundColor: Colors.sub,
     borderRadius: 8,
+    borderColor: Colors.background,
   },
   inputContainerStyle: {
     backgroundColor: Colors.background,
     borderRadius: 8,
+    borderColor: Colors.background,
   },
-  inputStyle:{
-    color:Colors.black,
-    borderWidth:0,
-    outline:"none"
-  }
+  inputStyle: {
+    color: Colors.black,
+    borderWidth: 0,
+    outline: "none",
+    outlineWidth: 0,
+  },
 });
