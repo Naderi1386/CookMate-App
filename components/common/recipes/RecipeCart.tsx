@@ -2,7 +2,9 @@ import CustomButton from "@/components/ui/CustomButton";
 import { Colors } from "@/constants/Colors";
 import { FontSize } from "@/constants/FontSize";
 import { useStore } from "@/store/store";
+import { NavigationProp } from "@/types/Navigation";
 import { RecipesType } from "@/types/Recipes";
+import { useNavigation } from "@react-navigation/native";
 import { Card, Icon } from "@rneui/themed";
 import { Alert, StyleSheet, View } from "react-native";
 
@@ -10,6 +12,7 @@ const RecipeCart = ({ recipe }: { recipe: RecipesType }) => {
   const { addRecipe, recipes, removeRecipe } = useStore();
   const { image, title, id } = recipe;
   const isAdded = recipes.find((recipe) => recipe.id === id);
+  const navigation = useNavigation<NavigationProp>();
   return (
     <View>
       <View style={Styles.iconWrraper}>
@@ -51,7 +54,11 @@ const RecipeCart = ({ recipe }: { recipe: RecipesType }) => {
           }}
         />
 
-        <CustomButton>View More</CustomButton>
+        <CustomButton
+          onPress={() => navigation.navigate("FoodDetails", { id: String(id) })}
+        >
+          View More
+        </CustomButton>
       </Card>
     </View>
   );
