@@ -1,14 +1,32 @@
+import FavoritesList from "@/components/feature/favorites/FavoritesList";
 import Layout from "@/components/ui/Layout";
-import { Text, View } from "react-native";
+import { FontSize } from "@/constants/FontSize";
+import { StyleSheet, Text, View } from "react-native";
 
 const Favorites = () => {
   return (
     <Layout>
-      <View>
-        <Text>hello favorites</Text>
+      <View style={Styles.container}>
+        <Text style={Styles.title}>My Favorites ♥️</Text>
+        <FavoritesList />
       </View>
     </Layout>
   );
 };
 
 export default Favorites;
+
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: 14,
+  },
+  title: {
+    fontSize: FontSize["2xl"],
+    fontWeight: "600",
+    marginBottom: 10,
+    fontStyle: "italic",
+    textAlign: "center",
+    lineHeight: 34,
+  },
+});
