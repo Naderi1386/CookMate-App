@@ -1,4 +1,5 @@
 import RecipeCart from "@/components/common/recipes/RecipeCart";
+import Separator from "@/components/common/recipes/Separator";
 import Loading from "@/components/ui/Loading";
 import { Colors } from "@/constants/Colors";
 import { useGetRecipes } from "@/hooks/useGetRecipes";
@@ -11,6 +12,7 @@ const RecipesList = ({ offset }: { offset: string }) => {
       data={recipes}
       renderItem={({ item }) => <RecipeCart recipe={item} />}
       keyExtractor={(item) => String(item.id)}
+      ItemSeparatorComponent={Separator}
     />
   );
 };

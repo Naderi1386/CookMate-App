@@ -2,6 +2,7 @@ import { useStore } from "@/store/store";
 import { FlatList, View } from "react-native";
 import EmptyFavorites from "./EmptyFavorites";
 import FavoriteItems from "./FavoriteItems";
+import Separator from "@/components/common/recipes/Separator";
 
 const FavoritesList = () => {
   const { recipes } = useStore();
@@ -14,6 +15,7 @@ const FavoritesList = () => {
           <FavoriteItems favorite={favorite} />
         )}
         keyExtractor={(item) => String(item.id)}
+        ItemSeparatorComponent={Separator}
       />
     </View>
   );
