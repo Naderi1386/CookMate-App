@@ -1,24 +1,36 @@
 import CustomButton from "@/components/ui/CustomButton";
 import { Colors } from "@/constants/Colors";
 import { FontSize } from "@/constants/FontSize";
+import { useStore } from "@/store/store";
 import { RecipesType } from "@/types/Recipes";
-import { Card } from "@rneui/themed";
-import { StyleSheet } from "react-native";
+import { Card, Icon } from "@rneui/themed";
+import { StyleSheet, View } from "react-native";
 
 const FavoriteItems = ({ favorite }: { favorite: RecipesType }) => {
-  const { image, title } = favorite;
+  const { removeRecipe } = useStore();
+  const { image, title, id } = favorite;
   return (
-    <Card containerStyle={Styles.container}>
-      <Card.Title style={Styles.title}>{title}</Card.Title>
-      <Card.Divider style={Styles.divider} />
-      <Card.Image
-        style={Styles.img}
-        source={{
-          uri: image,
-        }}
-      />
-      <CustomButton>View More</CustomButton>
-    </Card>
+    <View>
+      <View style={Styles.iconWrraper}>
+        <Icon
+          onPress={() => removeRecipe(id)}
+          name="delete-outline"
+          type="material-community"
+          color={Colors.main}
+        />
+      </View>
+      <Card containerStyle={Styles.container}>
+        <Card.Title style={Styles.title}>{title}</Card.Title>
+        <Card.Divider style={Styles.divider} />
+        <Card.Image
+          style={Styles.img}
+          source={{
+            uri: image,
+          }}
+        />
+        <CustomButton>View More</CustomButton>
+      </Card>
+    </View>
   );
 };
 
@@ -42,7 +54,10 @@ const Styles = StyleSheet.create({
   divider: {
     backgroundColor: Colors.sub,
   },
-  icon: {
-    marginTop: 8,
+  iconWrraper: {
+    paddingLeft: 10,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
   },
 });
