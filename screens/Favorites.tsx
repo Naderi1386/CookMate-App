@@ -19,12 +19,12 @@ export default Favorites;
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 14,
+    paddingVertical: 18,
   },
   title: {
     fontSize: FontSize["2xl"],
     fontWeight: "600",
-    marginBottom: 10,
+    marginBottom: 16,
     fontStyle: "italic",
     textAlign: "center",
     lineHeight: 34,
