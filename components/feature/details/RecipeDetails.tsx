@@ -3,7 +3,13 @@ import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import Separator from "@/components/common/recipes/Separator";
-const RecipeDetails = () => {
+import { useGetRecipeDetails } from "@/hooks/useGetRecipeDetails";
+import Loading from "@/components/ui/Loading";
+const RecipeDetails = ({ id }: { id: string }) => {
+  const { isGettingRecipeDetails, recipeDetails } = useGetRecipeDetails(id);
+  
+  if (isGettingRecipeDetails) return <Loading color={Colors.main} size={45} />;
+
   return (
     <View>
       <View>

@@ -10,7 +10,7 @@ const FoodDetails = ({ route }: ScreenPropsType<"FoodDetails">) => {
     <Layout>
       <View style={Styles.container}>
         <ScrollView>
-          <RecipeDetails />
+          <RecipeDetails id={id} />
         </ScrollView>
       </View>
     </Layout>
