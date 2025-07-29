@@ -26,10 +26,10 @@ const Welcome = ({ navigation }: ScreenPropsType<"Welcome">) => {
         </Text>
         <View style={Styles.buttonsContainer}>
           <CustomButton onPress={() => navigation.navigate("Home")}>
-            start
+            Start 🤩
           </CustomButton>
           <CustomButton onPress={() => navigation.navigate("Favorites")}>
-            favorites ♥️
+            Favorites ♥️
           </CustomButton>
         </View>
       </View>
