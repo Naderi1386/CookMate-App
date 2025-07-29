@@ -12,7 +12,12 @@ import { useStore } from "@/store/store";
 const RecipeDetails = ({ id }: { id: string }) => {
   const { isGettingRecipeDetails, recipeDetails } = useGetRecipeDetails(id);
   const { addRecipe, recipes, removeRecipe } = useStore();
-  if (isGettingRecipeDetails) return <Loading color={Colors.main} size={45} />;
+  if (isGettingRecipeDetails)
+    return (
+      <View style={Styles.loadingWrraper}>
+        <Loading color={Colors.main} size={45} />
+      </View>
+    );
   const {
     image,
     title,
@@ -150,5 +155,10 @@ const Styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     marginTop: 28,
+  },
+  loadingWrraper: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
