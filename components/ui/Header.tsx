@@ -4,20 +4,31 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationProp } from "@/types/Navigation";
 import { FontSize } from "@/constants/FontSize";
 import Logo from "./Logo";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { useState } from "react";
+import Menu from "./Menu";
 
 const Header = () => {
   const navigation = useNavigation<NavigationProp>();
+  const [isShowMenu, setIsShowMenu] = useState(false);
   return (
     <View style={Styles.container}>
+      <Menu isShow={isShowMenu} setIsShow={setIsShowMenu} />
+      <Icon
+        onPress={() => setIsShowMenu(true)}
+        name="menu"
+        size={30}
+        color={Colors.sub}
+      />
+      <Text style={Styles.title}>Cook Mate 👩‍🍳</Text>
       <Pressable onPress={() => navigation.navigate("Welcome")}>
         <Logo width={40} height={40} />
       </Pressable>
-      <Text style={Styles.title}>Cook Mate 👩‍🍳</Text>
     </View>
   );
 };
 
-export default Header
+export default Header;
 
 const Styles = StyleSheet.create({
   container: {

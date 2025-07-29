@@ -23,5 +23,6 @@ const Styles = StyleSheet.create({
     paddingVertical: 12,
     flex: 1,
     backgroundColor: Colors.background,
+    zIndex:-1
   },
 });
