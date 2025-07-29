@@ -1,5 +1,5 @@
 import { FontSize } from "@/constants/FontSize";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import Separator from "@/components/common/recipes/Separator";
@@ -7,8 +7,11 @@ import { useGetRecipeDetails } from "@/hooks/useGetRecipeDetails";
 import Loading from "@/components/ui/Loading";
 import { getDifficulty, getStepsCount } from "@/utils/utils";
 import HeaderList from "./HeaderList";
+import { Icon } from "@rneui/themed";
+import { useStore } from "@/store/store";
 const RecipeDetails = ({ id }: { id: string }) => {
   const { isGettingRecipeDetails, recipeDetails } = useGetRecipeDetails(id);
+  const { addRecipe, recipes, removeRecipe } = useStore();
   if (isGettingRecipeDetails) return <Loading color={Colors.main} size={45} />;
   const {
     image,
@@ -21,7 +24,8 @@ const RecipeDetails = ({ id }: { id: string }) => {
     readyInMinutes,
     getStepsCount(recipeDetails!)
   );
-  console.log(analyzedInstructions);
+  const isAdded = recipes.find((recipe) => String(recipe.id) === id);
+
   return (
     <View>
       <View>
@@ -44,6 +48,35 @@ const RecipeDetails = ({ id }: { id: string }) => {
             <Text>Difficulty : {difficulty}</Text>
           </View>
         </View>
+      </View>
+      <View style={Styles.heartIconWrraper}>
+        {isAdded ? (
+          <Icon
+            name="heart"
+            type="font-awesome"
+            color="red"
+            onPress={() => {
+              removeRecipe(Number(id));
+              Alert.alert(
+                "Removed from Favorites",
+                "This recipe has been removed from your favorites."
+              );
+            }}
+          />
+        ) : (
+          <Icon
+            onPress={() => {
+              addRecipe({ id: Number(id), image, imageType: "jpg", title });
+              Alert.alert(
+                "Added to Favorites",
+                "This recipe has been added to your favorites."
+              );
+            }}
+            name="heart-o"
+            type="font-awesome"
+            color={Colors.main}
+          />
+        )}
       </View>
       <View style={Styles.listContainer}>
         <FlatList
@@ -111,5 +144,11 @@ const Styles = StyleSheet.create({
     fontSize: FontSize.md,
     fontWeight: "600",
     marginVertical: 6,
+  },
+  heartIconWrraper: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginTop: 28,
   },
 });
