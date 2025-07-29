@@ -31,7 +31,6 @@ const Welcome = ({ navigation }: ScreenPropsType<"Welcome">) => {
           <CustomButton onPress={() => navigation.navigate("Favorites")}>
             favorites ♥️
           </CustomButton>
-          <CustomButton onPress={()=>navigation.navigate("FoodDetails",{id:"test"})}>test</CustomButton>
         </View>
       </View>
     </Layout>

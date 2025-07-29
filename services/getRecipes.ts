@@ -30,7 +30,7 @@ export const getRecipeDetails = async (id: string) => {
         apiKey: API_KEY,
       },
     });
-    return response.data.results as RecipeDetailsType;
+    return response.data as RecipeDetailsType;
   } catch (error) {
     console.log(error);
     throw new Error("Recipes could not be loaded !");
