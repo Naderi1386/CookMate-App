@@ -5,11 +5,22 @@ import { Colors } from "@/constants/Colors";
 import Separator from "@/components/common/recipes/Separator";
 import { useGetRecipeDetails } from "@/hooks/useGetRecipeDetails";
 import Loading from "@/components/ui/Loading";
+import { getDifficulty, getStepsCount } from "@/utils/utils";
 const RecipeDetails = ({ id }: { id: string }) => {
   const { isGettingRecipeDetails, recipeDetails } = useGetRecipeDetails(id);
-  
   if (isGettingRecipeDetails) return <Loading color={Colors.main} size={45} />;
-
+  const {
+    image,
+    title,
+    readyInMinutes,
+    extendedIngredients,
+    analyzedInstructions,
+  } = recipeDetails!;
+  const difficulty = getDifficulty(
+    readyInMinutes,
+    getStepsCount(recipeDetails!)
+  );
+  console.log(analyzedInstructions);
   return (
     <View>
       <View>
@@ -17,50 +28,44 @@ const RecipeDetails = ({ id }: { id: string }) => {
           <Image
             style={Styles.img}
             source={{
-              uri: "https://img.spoonacular.com/recipes/716429-556x370.jpg",
+              uri: image,
             }}
           />
         </View>
-        <Text style={Styles.title}>
-          Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs
-        </Text>
+        <Text style={Styles.title}>{title}</Text>
         <View style={Styles.smallDetailsWrraper}>
           <View style={Styles.smallDetails}>
             <Ionicons name="time-outline" size={38} color={Colors.main} />
-            <Text>Ready In 45 mins</Text>
+            <Text>Ready In {readyInMinutes} mins</Text>
           </View>
           <View style={Styles.smallDetails}>
             <Ionicons name="barbell-outline" size={38} color={Colors.main} />
-            <Text>Difficulty : Easy</Text>
+            <Text>Difficulty : {difficulty}</Text>
           </View>
         </View>
       </View>
       <View style={Styles.listContainer}>
         <FlatList
-          data={[
-            {
-              name: "cheese",
-              original: "2 tbsp grated cheese (I used romano)",
-            },
-            {
-              name: "cheese",
-              original: "2 tbsp grated cheese (I used romano)",
-            },
-            {
-              name: "cheese",
-              original: "2 tbsp grated cheese (I used romano)",
-            },
-            {
-              name: "cheese",
-              original: "2 tbsp grated cheese (I used romano)",
-            },
-          ]}
+          data={extendedIngredients}
           renderItem={({ item, index }) => (
             <Text style={Styles.listItem}>
               {index + 1} : {item.name}( {item.original} )
             </Text>
           )}
           ItemSeparatorComponent={Separator}
+          keyExtractor={(item) => String(item.id)}
+        />
+      </View>
+      <View style={Styles.listContainer}>
+        <FlatList
+          data={analyzedInstructions[0].steps}
+          renderItem={({ item }) => (
+            <Text style={Styles.listItem}>
+              {item.number} : {item.step}
+            </Text>
+          )}
+          ItemSeparatorComponent={Separator}
+          keyExtractor={(item) => String(item.number)}
         />
       </View>
     </View>
