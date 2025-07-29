@@ -6,6 +6,7 @@ import Separator from "@/components/common/recipes/Separator";
 import { useGetRecipeDetails } from "@/hooks/useGetRecipeDetails";
 import Loading from "@/components/ui/Loading";
 import { getDifficulty, getStepsCount } from "@/utils/utils";
+import HeaderList from "./HeaderList";
 const RecipeDetails = ({ id }: { id: string }) => {
   const { isGettingRecipeDetails, recipeDetails } = useGetRecipeDetails(id);
   if (isGettingRecipeDetails) return <Loading color={Colors.main} size={45} />;
@@ -54,6 +55,7 @@ const RecipeDetails = ({ id }: { id: string }) => {
           )}
           ItemSeparatorComponent={Separator}
           keyExtractor={(item) => String(item.id)}
+          ListHeaderComponent={<HeaderList>Ingredients 📝</HeaderList>}
         />
       </View>
       <View style={Styles.listContainer}>
@@ -66,6 +68,7 @@ const RecipeDetails = ({ id }: { id: string }) => {
           )}
           ItemSeparatorComponent={Separator}
           keyExtractor={(item) => String(item.number)}
+          ListHeaderComponent={<HeaderList>Instructions 🔥</HeaderList>}
         />
       </View>
     </View>
