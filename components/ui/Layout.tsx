@@ -1,13 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import Header from "./Header";
 import { Colors } from "@/constants/Colors";
+import Menu from "./Menu";
 
 const Layout = ({ children }: { children: ReactNode }) => {
+    const [isShowMenu, setIsShowMenu] = useState(false);
+    console.log(isShowMenu)
   return (
     <SafeAreaView style={Styles.container}>
-      <Header />
+      <Header setIsShowMenu={setIsShowMenu} />
       <View style={Styles.mainWrraper}>{children}</View>
+      <Menu isShow={isShowMenu} setIsShow={setIsShowMenu} />
     </SafeAreaView>
   );
 };

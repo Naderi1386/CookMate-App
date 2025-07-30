@@ -1,18 +1,11 @@
 import { Colors } from "@/constants/Colors";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-  GestureResponderEvent,
-} from "react-native";
+import { StyleSheet, Text, View, Animated } from "react-native";
 import Logo from "./Logo";
 import { FontSize } from "@/constants/FontSize";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationProp } from "@/types/Navigation";
-import { useOutsideTap } from "@/hooks/useOutsideClick";
 
 const Menu = ({
   isShow,
@@ -24,9 +17,6 @@ const Menu = ({
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [visible, setVisible] = useState(isShow);
   const navigation = useNavigation<NavigationProp>();
-
-  // اینجا از هوک استفاده کردیم
-  const { ref, handlePress } = useOutsideTap(() => setIsShow(false));
 
   useEffect(() => {
     if (isShow) {
@@ -49,18 +39,18 @@ const Menu = ({
 
   if (!visible) return null;
 
-  const onRelease = (evt: GestureResponderEvent) => {
-    handlePress(evt);
-    return false;
-  };
-
   return (
-    <Animated.View
-      style={[Styles.overlay, { opacity: fadeAnim }]}
-      onStartShouldSetResponder={() => true}
-      onResponderRelease={onRelease}
-    >
-      <View ref={ref} style={Styles.container}>
+    <Animated.View style={[Styles.overlay, { opacity: fadeAnim }]}>
+      <View style={Styles.container}>
+        <View style={Styles.closeIconWrraper}>
+          <Ionicons
+            name="close"
+            size={28}
+            color={Colors.main}
+            onPress={() => setIsShow(false)}
+          />
+        </View>
+
         <View style={Styles.logoWrraper}>
           <Logo height={55} width={55} />
         </View>
@@ -97,7 +87,7 @@ export default Menu;
 const Styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    position: "fixed",
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
@@ -112,15 +102,17 @@ const Styles = StyleSheet.create({
     borderRightWidth: 4,
     borderColor: Colors.sub,
     paddingVertical: 6,
+    position: "relative",
   },
   logoWrraper: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 10,
+
     borderBottomWidth: 4,
     borderColor: Colors.main,
     paddingHorizontal: 10,
+    paddingBottom: 10,
   },
   mainWrraper: {
     paddingHorizontal: 10,
@@ -145,5 +137,12 @@ const Styles = StyleSheet.create({
   listItemTitle: {
     fontSize: FontSize.lg,
     fontWeight: "600",
+  },
+  closeIconWrraper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    paddingRight:8
   },
 });

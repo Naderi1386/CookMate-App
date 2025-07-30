@@ -5,15 +5,16 @@ import { NavigationProp } from "@/types/Navigation";
 import { FontSize } from "@/constants/FontSize";
 import Logo from "./Logo";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { useState } from "react";
-import Menu from "./Menu";
+import { Dispatch, SetStateAction } from "react";
 
-const Header = () => {
+const Header = ({
+  setIsShowMenu,
+}: {
+  setIsShowMenu: Dispatch<SetStateAction<boolean>>;
+}) => {
   const navigation = useNavigation<NavigationProp>();
-  const [isShowMenu, setIsShowMenu] = useState(false);
   return (
     <View style={Styles.container}>
-      <Menu isShow={isShowMenu} setIsShow={setIsShowMenu} />
       <Icon
         onPress={() => setIsShowMenu(true)}
         name="menu"
