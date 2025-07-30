@@ -144,11 +144,18 @@ const Styles = StyleSheet.create({
   },
   listContainer: {
     marginVertical: 20,
+    backgroundColor: Colors.main,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: Colors.sub,
   },
   listItem: {
     fontSize: FontSize.md,
     fontWeight: "600",
     marginVertical: 6,
+    color: Colors.darkGrey,
   },
   heartIconWrraper: {
     display: "flex",

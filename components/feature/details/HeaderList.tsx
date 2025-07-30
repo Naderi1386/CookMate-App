@@ -17,7 +17,8 @@ const Styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.sub,
     paddingVertical: 10,
-    marginBottom:6
+    marginBottom: 6,
+    borderRadius: 6,
   },
   title: {
     color: Colors.main,

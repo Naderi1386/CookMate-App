@@ -2,13 +2,16 @@ import CustomButton from "@/components/ui/CustomButton";
 import { Colors } from "@/constants/Colors";
 import { FontSize } from "@/constants/FontSize";
 import { useStore } from "@/store/store";
+import { NavigationProp } from "@/types/Navigation";
 import { RecipesType } from "@/types/Recipes";
+import { useNavigation } from "@react-navigation/native";
 import { Card, Icon } from "@rneui/themed";
 import { StyleSheet, View } from "react-native";
 
 const FavoriteItems = ({ favorite }: { favorite: RecipesType }) => {
   const { removeRecipe } = useStore();
   const { image, title, id } = favorite;
+  const navigation = useNavigation<NavigationProp>();
   return (
     <View>
       <View style={Styles.iconWrraper}>
@@ -28,7 +31,11 @@ const FavoriteItems = ({ favorite }: { favorite: RecipesType }) => {
             uri: image,
           }}
         />
-        <CustomButton>View More</CustomButton>
+        <CustomButton
+          onPress={() => navigation.navigate("FoodDetails", { id: String(id) })}
+        >
+          View More
+        </CustomButton>
       </Card>
     </View>
   );
