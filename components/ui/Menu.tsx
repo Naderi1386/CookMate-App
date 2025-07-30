@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Animated } from "react-native";
 import Logo from "./Logo";
 import { FontSize } from "@/constants/FontSize";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { NavigationProp } from "@/types/Navigation";
 
 const Menu = ({
@@ -17,6 +17,7 @@ const Menu = ({
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [visible, setVisible] = useState(isShow);
   const navigation = useNavigation<NavigationProp>();
+  const { name } = useRoute();
 
   useEffect(() => {
     if (isShow) {
@@ -57,20 +58,40 @@ const Menu = ({
         <View style={Styles.mainWrraper}>
           <Text style={Styles.title}>Cook Mate 👩‍🍳</Text>
           <View style={Styles.list}>
-            <View style={Styles.listItem}>
+            <View
+              style={[
+                Styles.listItem,
+                name === "Home" && { backgroundColor: Colors.grey },
+              ]}
+            >
               <Ionicons name="home-outline" size={24} color={Colors.main} />
               <Text
                 style={Styles.listItemTitle}
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => {
+                  setIsShow(false);
+                  setTimeout(() => {
+                    navigation.navigate("Home");
+                  }, 500);
+                }}
               >
                 Home
               </Text>
             </View>
-            <View style={Styles.listItem}>
+            <View
+              style={[
+                Styles.listItem,
+                name === "Favorites" && { backgroundColor: Colors.grey },
+              ]}
+            >
               <Ionicons name="heart-outline" size={24} color={Colors.main} />
               <Text
                 style={Styles.listItemTitle}
-                onPress={() => navigation.navigate("Favorites")}
+                onPress={() => {
+                  setIsShow(false);
+                  setTimeout(() => {
+                    navigation.navigate("Favorites");
+                  }, 500);
+                }}
               >
                 Favorites
               </Text>
@@ -126,13 +147,14 @@ const Styles = StyleSheet.create({
   },
   list: {
     flexDirection: "column",
-    gap: 20,
+    gap: 4,
     marginTop: 12,
   },
   listItem: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+    padding: 8,
   },
   listItemTitle: {
     fontSize: FontSize.lg,
@@ -143,6 +165,6 @@ const Styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     flexDirection: "row",
-    paddingRight:8
+    paddingRight: 8,
   },
 });

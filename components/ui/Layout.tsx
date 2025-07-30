@@ -5,8 +5,8 @@ import { Colors } from "@/constants/Colors";
 import Menu from "./Menu";
 
 const Layout = ({ children }: { children: ReactNode }) => {
-    const [isShowMenu, setIsShowMenu] = useState(false);
-    console.log(isShowMenu)
+  const [isShowMenu, setIsShowMenu] = useState(false);
+
   return (
     <SafeAreaView style={Styles.container}>
       <Header setIsShowMenu={setIsShowMenu} />
@@ -27,6 +27,6 @@ const Styles = StyleSheet.create({
     paddingVertical: 12,
     flex: 1,
     backgroundColor: Colors.background,
-    zIndex:-1
+    zIndex: -1,
   },
 });
